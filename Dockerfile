@@ -11,12 +11,12 @@ ENV NODE_ENV=production \
 WORKDIR /app
 
 # وابستگی‌ها (sharp باینری prebuilt لینوکس دارد؛ نیازی به build-essential نیست)
-COPY site/package.json site/package-lock.json ./
+COPY package.json package-lock.json ./
 RUN npm ci --omit=dev && npm cache clean --force
 
 # کد برنامه، رابط کاربری و دارایی‌های برند
-COPY site/server ./server
-COPY site/public ./public
+COPY server ./server
+COPY public ./public
 COPY assets ./assets
 
 RUN mkdir -p /app/data/uploads /app/data/voice /app/data/ocr-cache \
